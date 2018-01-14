@@ -1,25 +1,34 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { gray, black } from '../utils/colors'
 
 
 function Deck ({ title, noOfCards }) {
   return (
-    <View style={styles.deck}>
-      <Text style={{fontSize: 20}}>{title}</Text>
-      <Text style={{color: gray}}>{noOfCards} cards</Text>
-    </View>
+    <TouchableOpacity>
+      <View style={styles.deck}>
+        <Text style={{fontSize: 20}}>{title}</Text>
+        <Text style={{color: gray}}>{noOfCards} cards</Text>
+      </View>
+    </TouchableOpacity>
    )
 }
 
 
 class ListDecks extends Component {
+
+  renderItem = ({ item }) => {
+    return <Deck {...item} />
+  }
+
   render() {
     return (
       <View>
-        <Deck title='Voila' noOfCards={4}/>
-        <Deck title='Shoo' noOfCards={2}/>
-        <Deck title='Aha!' noOfCards={1}/>
+        <FlatList
+          data={[{title: 'Voila', noOfCards: 3},{title: 'Shoo', noOfCards:2}, {title: 'Aha!', noOfCards: 5}]}
+          renderItem={this.renderItem}
+          keyExtractor={(item, index) => index}
+        />
       </View>
     );
   }
