@@ -3,6 +3,7 @@ import { Text, View, Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import ListDecks from './components/ListDecks'
 import AddDeck from './components/AddDeck'
+import CardDeck from './components/CardDeck'
 import { MaterialCommunityIcons, FontAwesome, Ionicons } from '@expo/vector-icons'
 import { white, black, purple } from './utils/colors'
 
@@ -41,11 +42,26 @@ const Tabs = TabNavigator({
   }
 })
 
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  CardDeck: {
+    screen: CardDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: black
+      }
+    }
+  }
+})
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <Tabs />
+      <MainNavigator />
     );
   }
 }
