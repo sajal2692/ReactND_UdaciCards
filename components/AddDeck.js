@@ -1,14 +1,63 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
+import SubmitBtn from './SubmitButton'
 
 class AddDeck extends Component {
+
+  state = {
+    input:''
+  }
+
+  handleTextChange = (input) => {
+    this.setState(()=> ({
+      input
+    }))
+  }
+
+  submit = () => {
+
+    //Redux Action
+
+    //Update db
+    
+    //Just clear state for now
+    this.setState(() => ({
+      input: ''
+    }))
+  }
+
   render() {
+
+    const {input} = this.state
+
     return (
-      <View>
-        <Text>Add Deck!</Text>
+      <View style={styles.container}>
+        <Text style={{fontSize: 20}}>What is the title of your new deck?</Text>
+        <TextInput
+          value={input}
+          style={styles.input}
+          onChangeText={this.handleTextChange}
+        />
+        <SubmitBtn onPress={this.submit} />
       </View>
     );
   }
 }
+
+const styles  = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    width: 200,
+    height: 44,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#757575',
+    margin: 50,
+  }
+})
 
 export default AddDeck
