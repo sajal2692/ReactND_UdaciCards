@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import SubmitBtn from './SubmitButton'
+import { saveDeckTitle } from '../actions'
+import { connect } from 'react-redux'
 
 class AddDeck extends Component {
 
@@ -17,9 +19,10 @@ class AddDeck extends Component {
   submit = () => {
 
     //Redux Action
+    this.props.dispatch(saveDeckTitle(this.state.input))
 
     //Update db
-    
+
     //Just clear state for now
     this.setState(() => ({
       input: ''
@@ -60,4 +63,4 @@ const styles  = StyleSheet.create({
   }
 })
 
-export default AddDeck
+export default connect()(AddDeck)

@@ -20,6 +20,7 @@ class ListDecks extends Component {
 
   componentDidMount() {
     this.props.dispatch(receiveDecks())
+    console.log(this.props.decks)
   }
 
   renderItem = ({ item }) => {
@@ -30,7 +31,7 @@ class ListDecks extends Component {
     return (
       <View>
         <FlatList
-          data={[{title: 'Voila', noOfCards: 3},{title: 'Shoo', noOfCards:2}, {title: 'Aha!', noOfCards: 5}]}
+          data={this.props.decks}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index}
         />
@@ -50,10 +51,26 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps (decks) {
-  return {
-    decks
-  }
+function mapStateToProps(state) {
+    return {
+      decks: Object.keys(state).filter(deck => state[deck]).map(deck => ({
+        title: state[deck].title,
+        noOfCards: state[deck].questions.length
+      }))
+    }
 }
+
+// function mapStateToProps(state) {
+//   return {
+//     decks: Object.keys(state).map(deck => ({
+//       title: state[deck]
+//               ? state[deck].title
+//               : '',
+//       noOfCards: state[deck]
+//                 ? state[deck].questions.length
+//                 : []
+//     }))
+//   }
+// }
 
 export default connect(mapStateToProps)(ListDecks)

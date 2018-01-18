@@ -15,7 +15,7 @@ function decks(state = default_state, action) {
         ...state,
         [title]: {
           title: title,
-          questions: null
+          questions: []
         }
       };
 
