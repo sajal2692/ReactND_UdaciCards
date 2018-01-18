@@ -3,28 +3,42 @@ import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native
 import { gray, black } from '../utils/colors'
 import { connect } from 'react-redux'
 import { receiveDecks } from '../actions'
-
-function Deck ({ title, noOfCards }) {
-  return (
-    <TouchableOpacity>
-      <View style={styles.deck}>
-        <Text style={{fontSize: 20}}>{title}</Text>
-        <Text style={{color: gray}}>{noOfCards} cards</Text>
-      </View>
-    </TouchableOpacity>
-   )
-}
+//
+// function Deck ({ title, noOfCards}, navigation) {
+//   return (
+//     <TouchableOpacity
+//       onPress={() => navigation.navigate(
+//         'CardDeck',
+//         { deckId: title }
+//       )}>
+//       <View style={styles.deck}>
+//         <Text style={{fontSize: 20}}>{title}</Text>
+//         <Text style={{color: gray}}>{noOfCards} cards</Text>
+//       </View>
+//     </TouchableOpacity>
+//    )
+// }
 
 
 class ListDecks extends Component {
 
   componentDidMount() {
     this.props.dispatch(receiveDecks())
-    console.log(this.props.decks)
   }
 
   renderItem = ({ item }) => {
-    return <Deck {...item} />
+    return (
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate(
+          'CardDeck',
+          { deckId: item.title }
+        )}>
+        <View style={styles.deck}>
+          <Text style={{fontSize: 20}}>{item.title}</Text>
+          <Text style={{color: gray}}>{item.noOfCards} cards</Text>
+        </View>
+      </TouchableOpacity>
+    )
   }
 
   render() {
@@ -59,18 +73,5 @@ function mapStateToProps(state) {
       }))
     }
 }
-
-// function mapStateToProps(state) {
-//   return {
-//     decks: Object.keys(state).map(deck => ({
-//       title: state[deck]
-//               ? state[deck].title
-//               : '',
-//       noOfCards: state[deck]
-//                 ? state[deck].questions.length
-//                 : []
-//     }))
-//   }
-// }
 
 export default connect(mapStateToProps)(ListDecks)
