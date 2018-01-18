@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 import { gray, black } from '../utils/colors'
-
+import { connect } from 'react-redux'
+import { receiveDecks } from '../actions'
 
 function Deck ({ title, noOfCards }) {
   return (
@@ -16,6 +17,10 @@ function Deck ({ title, noOfCards }) {
 
 
 class ListDecks extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(receiveDecks())
+  }
 
   renderItem = ({ item }) => {
     return <Deck {...item} />
@@ -45,4 +50,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListDecks
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(ListDecks)

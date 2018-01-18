@@ -7,6 +7,10 @@ import AddDeck from './components/AddDeck'
 import CardDeck from './components/CardDeck'
 import { MaterialCommunityIcons, FontAwesome, Ionicons } from '@expo/vector-icons'
 import { white, black, purple } from './utils/colors'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducer from './reducers'
+
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -70,10 +74,17 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <UdaciStatusBar backgroundColor={black} barStyle="light-content" />
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <UdaciStatusBar backgroundColor={black} barStyle="light-content" />
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }
+
+const store = createStore(
+  reducer, 
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
