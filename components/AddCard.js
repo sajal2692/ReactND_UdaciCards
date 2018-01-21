@@ -11,11 +11,20 @@ class AddCard extends Component {
     answer: ''
   }
 
-  // handleTextChange = (input) => {
-  //   this.setState(()=> ({
-  //     input
-  //   }))
-  // }
+  handleQuestionTextChange = (input) => {
+    this.setState((state)=> ({
+      ...state,
+      question: input
+    }))
+  }
+
+  handleAnswerTextChange = (input) => {
+    this.setState((state)=> ({
+      ...state,
+      answer: input
+    }))
+  }
+
 
   // submit = () => {
   //
@@ -36,12 +45,22 @@ class AddCard extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}>What is the title of your new deck?</Text>
-        <TextInput
-          value={input}
-          style={styles.input}
-          onChangeText={this.handleTextChange}
-        />
+        <View style={styles.formComp}>
+          <Text style={{fontSize: 20}}>Question</Text>
+          <TextInput
+            value={input}
+            style={styles.input}
+            onChangeText={this.handleQuestionTextChange}
+          />
+        </View>
+        <View style={styles.formComp}>
+          <Text style={{fontSize: 20}}>Answer</Text>
+          <TextInput
+            value={input}
+            style={styles.input}
+            onChangeText={this.handleAnswerTextChange}
+          />
+        </View>
         <Btn onPress={this.submit} text="Submit"/>
       </View>
     );
@@ -52,7 +71,7 @@ const styles  = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   input: {
     width: 200,
@@ -60,8 +79,13 @@ const styles  = StyleSheet.create({
     padding: 8,
     borderWidth: 1,
     borderColor: '#757575',
-    margin: 50,
+    margin: 40,
+  },
+  formComp: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center'
   }
 })
 
-export default connect()(AddDeck)
+export default connect()(AddCard)

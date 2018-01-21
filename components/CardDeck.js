@@ -25,6 +25,8 @@ class CardDeck extends Component {
             text="Add Card"
             backgroundColor={white}
             textColor={black}
+            onPress={() => this.props.navigation.navigate(
+              'AddCard')}
           />
           <Btn
             text="Start Quiz"

@@ -5,6 +5,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import ListDecks from './components/ListDecks'
 import AddDeck from './components/AddDeck'
 import CardDeck from './components/CardDeck'
+import AddCard from './components/AddCard'
 import { MaterialCommunityIcons, FontAwesome, Ionicons } from '@expo/vector-icons'
 import { white, black, purple } from './utils/colors'
 import { Provider } from 'react-redux'
@@ -67,6 +68,15 @@ const MainNavigator = StackNavigator({
         backgroundColor: black
       }
     }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: black
+      }
+    }
   }
 })
 
@@ -85,6 +95,6 @@ export default class App extends React.Component {
 }
 
 const store = createStore(
-  reducer, 
+  reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
