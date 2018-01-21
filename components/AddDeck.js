@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
-import SubmitBtn from './SubmitButton'
+import Btn from './Button'
 import { saveDeckTitle } from '../actions'
 import { connect } from 'react-redux'
 
@@ -41,7 +41,7 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={this.handleTextChange}
         />
-        <SubmitBtn onPress={this.submit} text="Submit"/>
+        <Btn onPress={this.submit} text="Submit"/>
       </View>
     );
   }

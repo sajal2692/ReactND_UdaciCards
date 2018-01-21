@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from 'react-redux'
 import { gray } from '../utils/colors'
+import Btn from './Button'
+import { black, white } from '../utils/colors'
 
 class CardDeck extends Component {
 
@@ -12,20 +14,42 @@ class CardDeck extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 35}}>
-          {deck.title}
-        </Text>
-        <Text style={{color: gray, fontSize: 20}}>{deck.questions.length} cards</Text>
+        <View style={styles.textContainer}>
+          <Text style={{fontSize: 35}}>
+            {deck.title}
+          </Text>
+          <Text style={{color: gray, fontSize: 20}}>{deck.questions.length} cards</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Btn
+            text="Add Card"
+            backgroundColor={white}
+            textColor={black}
+          />
+          <Btn
+            text="Start Quiz"
+            backgroundColor={black}
+            textColor={white}
+          />
+        </View>
       </View>
     );
   }
 }
 
 const styles  = StyleSheet.create({
-  container: {
+  textContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'space-around'
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-start'
   }
 })
 
