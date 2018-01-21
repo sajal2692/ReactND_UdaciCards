@@ -19,7 +19,7 @@ class AddDeck extends Component {
   submit = () => {
 
     //Redux Action
-    this.props.dispatch(saveDeckTitle(this.state.input))
+    (this.state.input!='') && this.props.dispatch(saveDeckTitle(this.state.input))
 
     //Update db
 
@@ -41,7 +41,7 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={this.handleTextChange}
         />
-        <SubmitBtn onPress={this.submit} />
+        <SubmitBtn onPress={this.submit} text="Submit"/>
       </View>
     );
   }
