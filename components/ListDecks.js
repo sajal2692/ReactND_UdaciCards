@@ -35,7 +35,7 @@ class ListDecks extends Component {
         )}>
         <View style={styles.deck}>
           <Text style={{fontSize: 20}}>{item.title}</Text>
-          <Text style={{color: gray}}>{item.noOfCards} cards</Text>
+          <Text style={{color: gray}}>{item.noOfCards} {item.noOfCards === 1 ? (<Text>card</Text>): (<Text>cards</Text>)}</Text>
         </View>
       </TouchableOpacity>
     )

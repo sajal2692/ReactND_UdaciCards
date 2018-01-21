@@ -18,7 +18,7 @@ class CardDeck extends Component {
           <Text style={{fontSize: 35}}>
             {deck.title}
           </Text>
-          <Text style={{color: gray, fontSize: 20}}>{deck.questions.length} cards</Text>
+          <Text style={{color: gray, fontSize: 20}}>{deck.questions.length} {deck.questions.length === 1 ? (<Text>card</Text>): (<Text>cards</Text>)}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <Btn
