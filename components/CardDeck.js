@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { connect } from 'react-redux'
+import { gray } from '../utils/colors'
 
 class CardDeck extends Component {
-  render() {
 
+
+
+  render() {
     const {deck} = this.props
 
     return (
       <View style={styles.container}>
-        <Text style={{fontSize: 20}}>
+        <Text style={{fontSize: 35}}>
           {deck.title}
         </Text>
+        <Text style={{color: gray, fontSize: 20}}>{deck.questions.length} cards</Text>
       </View>
     );
   }
