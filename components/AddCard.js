@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import Btn from './Button'
-import { saveDeckTitle } from '../actions'
 import { connect } from 'react-redux'
+import  { addCardToDeck } from '../actions'
 
 class AddCard extends Component {
 
@@ -26,29 +26,43 @@ class AddCard extends Component {
   }
 
 
-  // submit = () => {
-  //
-  //   //Redux Action
-  //   (this.state.input!='') && this.props.dispatch(saveDeckTitle(this.state.input))
-  //
-  //   //Update db
-  //
-  //   //Just clear state for now
-  //   this.setState(() => ({
-  //     input: ''
-  //   }))
-  // }
+  submit = () => {
+
+
+    const { question, answer } = this.state
+    const { deckId } = this.props.navigation.state.params
+
+    let card = {
+      question: question,
+      answer: answer
+    }
+
+    console.log(card)
+
+    //Redux Action
+    //(question!='' && answer!='') && 
+    this.props.dispatch(addCardToDeck(deckId, card));
+
+    //Update db
+
+    //Just clear state for now
+    this.setState(() => ({
+      question: '',
+      answer: ''
+    }))
+
+  }
 
   render() {
 
-    const {input} = this.state
+    const {question, answer} = this.state
 
     return (
       <View style={styles.container}>
         <View style={styles.formComp}>
           <Text style={{fontSize: 20}}>Question</Text>
           <TextInput
-            value={input}
+            value={question}
             style={styles.input}
             onChangeText={this.handleQuestionTextChange}
           />
@@ -56,7 +70,7 @@ class AddCard extends Component {
         <View style={styles.formComp}>
           <Text style={{fontSize: 20}}>Answer</Text>
           <TextInput
-            value={input}
+            value={answer}
             style={styles.input}
             onChangeText={this.handleAnswerTextChange}
           />
