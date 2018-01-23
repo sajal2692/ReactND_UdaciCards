@@ -45,7 +45,7 @@ class AddDeck extends Component {
           style={styles.input}
           onChangeText={this.handleTextChange}
         />
-        <Btn onPress={this.submit} text="Submit"/>
+        <Btn onPress={this.submit} text="Create Deck"/>
       </View>
     );
   }

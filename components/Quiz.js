@@ -80,46 +80,55 @@ class Quiz extends Component {
           </View>
         )
         : (
-          <View style={styles.container}>
-          <View style={styles.textContainer}>
-            {currentView === 'question'
-            ? (
-              <Text style={{fontSize: 25}}>
-                {deck.questions[cardNo].question}
-              </Text>
-            )
-            : (
-              <Text style={{fontSize: 25}}>
-                {deck.questions[cardNo].answer}
-              </Text>
-            )}
-            <TouchableOpacity
-              onPress={this.flip}>
-              <Text style={{color: blue, fontSize: 20, marginTop: 20}}>{currentView === 'question' ? (<Text>Answer</Text>): (<Text>Question</Text>)}</Text>
-            </TouchableOpacity>
+          <View style={styles.mainContainer}>
+            <View>
+              <Text style={{fontSize: 25}}>{cardNo+1}/{deck.questions.length}</Text>
+            </View>
+            <View style={styles.container}>
+              <View style={styles.textContainer}>
+                {currentView === 'question'
+                ? (
+                  <Text style={{fontSize: 25}}>
+                    {deck.questions[cardNo].question}
+                  </Text>
+                )
+                : (
+                  <Text style={{fontSize: 25}}>
+                    {deck.questions[cardNo].answer}
+                  </Text>
+                )}
+                <TouchableOpacity
+                  onPress={this.flip}>
+                  <Text style={{color: blue, fontSize: 20, marginTop: 20}}>{currentView === 'question' ? (<Text>Show Answer</Text>): (<Text>Show Question</Text>)}</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.buttonContainer}>
+                <Btn
+                  text="Correct"
+                  backgroundColor={green}
+                  textColor={white}
+                  onPress={() => this.next(1)}
+                />
+                <Btn
+                  text="Incorrect"
+                  backgroundColor={black}
+                  textColor={white}
+                  onPress={() => this.next(0)}
+                />
+              </View>
+            </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Btn
-              text="Correct"
-              backgroundColor={green}
-              textColor={white}
-              onPress={() => this.next(1)}
-            />
-            <Btn
-              text="Incorrect"
-              backgroundColor={black}
-              textColor={white}
-              onPress={() => this.next(0)}
-            />
-          </View>
+          )}
         </View>
-        )}
-      </View>
-    );
+      );
+    }
   }
-}
 
 const styles  = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    justifyContent: 'flex-start'
+  },
   textContainer: {
     flex: 1,
     alignItems: 'center',
