@@ -65,7 +65,7 @@ class Quiz extends Component {
               </Text>
             )}
             <TouchableOpacity
-              onpress={this.flip}>
+              onPress={this.flip}>
               <Text style={{color: blue, fontSize: 20, marginTop: 20}}>{currentView === 'question' ? (<Text>Answer</Text>): (<Text>Question</Text>)}</Text>
             </TouchableOpacity>
           </View>
