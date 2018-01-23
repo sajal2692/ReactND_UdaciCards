@@ -22,9 +22,9 @@ class AddDeck extends Component {
     (this.state.input!='') && this.props.dispatch(saveDeckTitle(this.state.input))
 
     //Just clear state for now
-    // this.setState(() => ({
-    //   input: ''
-    // }))
+    this.setState(() => ({
+      input: ''
+    }))
 
     //Route to new deck view
     this.props.navigation.navigate(
