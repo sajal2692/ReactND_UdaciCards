@@ -35,6 +35,14 @@ class Quiz extends Component {
     })
   }
 
+  restart = () => {
+    this.setState({
+        currentView: 'question',
+        cardNo: 0,
+        score: 0
+    })
+  }
+
   render() {
     const {deck} = this.props
     const {currentView, cardNo, score } = this.state
@@ -45,9 +53,30 @@ class Quiz extends Component {
         { (cardNo === deck.questions.length)
         ? (
           <View style={styles.container}>
-            <Text style={{fontSize: 35}}>
-              Score: {((score*100)/deck.questions.length).toFixed(2)} %
-            </Text>
+            <View style={styles.textContainer}>
+              <Text style={{fontSize: 35}}>
+                Score: {((score*100)/deck.questions.length).toFixed(2)} %
+              </Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Btn
+                text="Restart Quiz"
+                backgroundColor={white}
+                textColor={black}
+                onPress={this.restart}
+              />
+              <Btn
+                text="Back to Deck"
+                backgroundColor={black}
+                textColor={white}
+                onPress={()=> {
+                  this.props.navigation.navigate(
+                    'CardDeck',
+                    { deckId: deck.title}
+                  )
+                }}
+              />
+            </View>
           </View>
         )
         : (
