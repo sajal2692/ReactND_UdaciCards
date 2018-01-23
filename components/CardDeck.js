@@ -29,11 +29,15 @@ class CardDeck extends Component {
               'AddCard',
               {deckId: deck.title})}
           />
-          <Btn
+          {deck.questions.length > 0 &&
+            (<Btn
             text="Start Quiz"
             backgroundColor={black}
             textColor={white}
-          />
+            onPress={() => this.props.navigation.navigate(
+              'Quiz',
+              {deckId: deck.title})}
+          />)}
         </View>
       </View>
     );

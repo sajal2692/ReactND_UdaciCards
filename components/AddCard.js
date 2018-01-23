@@ -37,6 +37,8 @@ class AddCard extends Component {
       answer: answer
     }
 
+    console.log(card);
+
     //Redux Action
     (question!=='' && answer!=='') && (this.props.dispatch(addCardToDeck(deckId, card)))
 

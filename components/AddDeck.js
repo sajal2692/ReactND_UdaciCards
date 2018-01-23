@@ -21,12 +21,16 @@ class AddDeck extends Component {
     //Redux Action
     (this.state.input!='') && this.props.dispatch(saveDeckTitle(this.state.input))
 
-    //Update db
-
     //Just clear state for now
-    this.setState(() => ({
-      input: ''
-    }))
+    // this.setState(() => ({
+    //   input: ''
+    // }))
+
+    //Route to new deck view
+    this.props.navigation.navigate(
+      'CardDeck',
+      { deckId: this.state.input}
+    )
   }
 
   render() {
