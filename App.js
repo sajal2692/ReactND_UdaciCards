@@ -14,6 +14,7 @@ import { createStore } from 'redux'
 import reducer from './reducers'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import configureStore from './configureStore'
+import { setLocalNotification } from './utils/notifications'
 
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -96,6 +97,11 @@ const MainNavigator = StackNavigator({
 let { store, persistor } = configureStore()
 
 export default class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={store}>

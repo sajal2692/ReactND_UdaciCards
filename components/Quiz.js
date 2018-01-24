@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { gray } from '../utils/colors'
 import Btn from './Button'
 import { black, white, red, green, blue } from '../utils/colors'
+import { clearLocalNotifications, setLocalNotification } from '../utils/notifications'
 
 class Quiz extends Component {
 
@@ -15,6 +16,13 @@ class Quiz extends Component {
 
 
   next = (addScore) => {
+
+    //Clear Notifications if quiz complete
+    if (cardNo === deck.questions.length) {
+      clearLocalNotifications()
+        .then(setLocalNotification())
+    }
+
     this.setState((state) => {
       return {
         currentView: 'question',
