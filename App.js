@@ -12,6 +12,8 @@ import { white, black, purple } from './utils/colors'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducers'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import configureStore from './configureStore'
 
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -91,20 +93,24 @@ const MainNavigator = StackNavigator({
 })
 
 
+let { store, persistor } = configureStore()
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={{flex: 1}}>
-          <UdaciStatusBar backgroundColor={black} barStyle="light-content" />
-          <MainNavigator />
-        </View>
+        <PersistGate loading={null} persistor={persistor}>
+          <View style={{flex: 1}}>
+            <UdaciStatusBar backgroundColor={black} barStyle="light-content" />
+            <MainNavigator />
+          </View>
+        </PersistGate>
       </Provider>
     );
   }
 }
 
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// const store = createStore(
+//   reducer,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );

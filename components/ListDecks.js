@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-      decks: Object.keys(state).filter(deck => state[deck]).map(deck => ({
+      decks: Object.keys(state).filter(deck => state[deck] && deck!='_persist').map(deck => ({
         title: state[deck].title,
-        noOfCards: state[deck].questions.length
+        noOfCards: state[deck].questions ? state[deck].questions.length : 0
       }))
     }
 }
