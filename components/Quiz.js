@@ -18,7 +18,7 @@ class Quiz extends Component {
   next = (addScore) => {
 
     //Clear Notifications if quiz complete
-    if (cardNo === deck.questions.length) {
+    if (this.state.cardNo === this.props.deck.questions.length) {
       clearLocalNotifications()
         .then(setLocalNotification())
     }
