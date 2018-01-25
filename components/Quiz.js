@@ -78,10 +78,7 @@ class Quiz extends Component {
                 backgroundColor={black}
                 textColor={white}
                 onPress={()=> {
-                  this.props.navigation.navigate(
-                    'CardDeck',
-                    { deckId: deck.title}
-                  )
+                  this.props.navigation.goBack()
                 }}
               />
             </View>
